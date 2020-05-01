@@ -1,4 +1,5 @@
 ﻿using ApiBooks.Data;
+using ApiBooks.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,8 @@ namespace ApiBooks.Installers
                     configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<DataContext>();
+
+            services.AddSingleton<IPostService, PostService>();
         }
     }
 }
